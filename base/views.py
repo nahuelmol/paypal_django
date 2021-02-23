@@ -5,17 +5,17 @@ from .models import Product, Order
 
 def SimpleCheckout(req):
    	
-    return render(req,'simple_checkout.html')
+    return render(req,'base/simple_checkout.html')
 
 def checkout(req):
 	product = Product.objects.get(id=pk)
 	context = {'product':product}
-	return render(req,'checkout.html')
+	return render(req,'base/checkout.html')
 
 def store(req):
 	products = Product.object.all()
 	context = {'products':products}
-	return render(req,'storestore',context)
+	return render(req,'base/store.html',context)
 
 def paymentComplete(req):
 	body = json.loads(req.body)
