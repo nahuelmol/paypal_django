@@ -1,4 +1,14 @@
-<html>
-	<head><title>Home</title></head>
-	<body><h1>Home</h1></body>
-</html>
+{% extends "accounts/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<body>
+		<h1 class="text-center">Home</h1>
+		<div class="text-center">
+			<div class="btn-group ">
+				<a class="btn btn-outline-info" href="{% url 'register' %}">Create an account</a>
+				<a class="btn btn-outline-info" href="{% url 'login' %}">Log in</a>
+			</div>
+		</div>
+	</body>
+
+{% endblock content %}
