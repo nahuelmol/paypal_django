@@ -5,11 +5,76 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/yeti/bootstrap.css">
+		<style type="text/css">
+			#messages {
+				padding: 20px;
+				background-color: gray;
+				color: white;
+			}
+			#salut {
+				padding-left: 20px;
+				padding-right: 20px;
+				color:white;
+			}
+			
+		</style>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  			<a class="navbar-brand" href="#">Navbar</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  			</button>
+
+  			<div class="collapse navbar-collapse" id="navbarColor02">
+    		<ul class="navbar-nav mr-auto">
+    		  <li class="nav-item active">
+    		    <a class="nav-link" href="{% url 'home' %}">Home
+    		      <span class="sr-only"></span>
+    		    </a>
+    		  </li>
+    		  {% if user.is_authenticated %}
+    		  		<li class="nav-item">
+    		  			<a class="nav-link" href="{% url 'profile' %}">profile</a>
+    		  		</li>
+    		  	{% if group == 'admin' %}
+    		  		<li class="nav-item">
+    		  			<a class="nav-link" href="#">Admin</a>
+    		  		</li>
+    		  	{% endif %}
+    		  	{% if group == 'customer' %}
+    		  		<li class="nav-item">
+    		  			<a class="nav-link" href="{% url 'customer_page' %}">Feed</a>
+    		  		</li>
+    		  	{% endif %}
+    		  	{% if group == 'vendor' %}
+    		  		<li class="nav-item">
+    		  			<a class="nav-link" href="{% url 'vendor_page' %}">Feed</a>
+    		  		</li>
+    		  	{% endif %}
+    		  {% endif%}
+    		  <li class="nav-item">
+    		    <a class="nav-link" href="#">About us</a>
+    		  </li>
+    		</ul>
+  			</div>
+
+		  
+		  {% if user.is_authenticated %}
+
+		  	<span id="salut">Hellow, {{ request.user }}</span>
+		  	<span><a href="{% url 'logout' %}">Logout</a></span>
+		  {% else %}
+		  	<span id="salut"><a href="{% url 'login' %}">Login</a></span>
+		  	<span id="salut" ><a href="{% url 'register' %}">Register</a></span>
+		  {% endif %}
+		  
+		</nav>
+
 		{% block content %}
 			{% for message in messages %}
-				<p class="btn btn-success" id="messages">{{message|crispy}}</p>
+				<div class="container" style="{padding:25px;}"></div>
+				<p  id="messages">{{message|crispy}}</p>
 			{% endfor %}
 		{% endblock content %}
 	</body>

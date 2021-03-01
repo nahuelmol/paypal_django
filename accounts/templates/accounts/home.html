@@ -3,12 +3,32 @@
 {% block content %}
 	<body>
 		<h1 class="text-center">Home</h1>
-		<div class="text-center">
-			<div class="btn-group ">
-				<a class="btn btn-outline-info" href="{% url 'register' %}">Create an account</a>
-				<a class="btn btn-outline-info" href="{% url 'login' %}">Log in</a>
+		<div class="text-center"></div>
+		<div class="row">
+			<div class="col">
+				<div>
+					{% for customer in customers %}
+					<div class="container c">
+						<p class="text-center">Sir, {{ customer.name }}</p>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="col"></div>
+			
+			<div class="container col card">
+				<ul class="list-group">
+					{% for user in Users %}
+  					<li class="list-group-item d-flex justify-content-between align-items-center">
+  					  <p class="text-center">{{user.username}}</p>
+  					  <span class="badge badge-primary badge-pill">3</span>
+  					</li>
+  					{% endfor %}
+				</ul>
 			</div>
 		</div>
+		
 	</body>
 
 {% endblock content %}

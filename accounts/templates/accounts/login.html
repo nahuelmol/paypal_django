@@ -1,23 +1,44 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
 <html>
 	<head>
 		<meta charset="utf-8">
+		<style type="text/css">
+				#elements_here {
+					padding: 25px;
+				}
+		</style>
 	</head>
 	<body>
 		<div>
-			<h1>Login</h1>
+			<h1 id="elements_here">Login</h1>
 			{% for message in messages %}
 				<p id="messages">{{message}}</p>
 			{% endfor %}
 		</div>
-		<form method="POST" action="">
+		<form id="elements_here" method="POST" action="">
 			{% csrf_token %}
-			{{ form.username.label}}
-			<input type="text" name="username" class="form-control">
-			{{ form.password.label}}
-			<input type="password" name="password" class="form-control">
-			<input type="submit">
+			
+			<div id="elements_here" class="container">
+				{{ form.username.label}}
+				<input id="elements_here" type="text" name="username" class="form-control">
+				
+			</div>
+			<div id="elements_here" class="container">
+				{{ form.password.label}}
+				<input id="elements_here" type="password" name="password" class="form-control">
+			</div>
+			
+			
+			<div id="elements_here">
+				<input  class="btn btn-info" type="submit">
+			</div>
+			{{ form.errors }}
 		</form>
 
 		<p>If you dont have any account? Then <a href="{% url 'register' %}">register</a></p>
 	</body>
 </html>
+
+{% endblock content %}
